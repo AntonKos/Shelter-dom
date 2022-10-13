@@ -1,0 +1,105 @@
+.footer{
+    background: $color-background-dark;
+    padding: 4rem 0 0 0;
+    @include media-tablet {
+        padding: 1.5rem 0 0 0;
+    };
+    @include media-mobilesmall {
+        row-gap: 1.3rem;
+    };
+
+}
+
+.layout-3-column{
+    display: flex;
+    justify-content: space-between;
+    @include media-tablet {
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 60px;
+        row-gap: 50px;
+    };
+    @include media-mobilesmall {
+        row-gap: 10px;
+    };
+      
+}
+
+.contacts{
+    max-width:27.83rem;
+}
+
+.adress{
+    max-width: 30.2rem;
+    @include media-tablet {
+       
+    };
+}
+
+.contacts__title{
+    color: $color-text;
+    @include font($height:130%, $size:3.5rem);
+    margin-top: 1.6rem;
+    margin-bottom: 2.5rem;
+    @include media-mobilesmall {
+        @include font($height:130%, $size:2.5rem);
+        text-align: center;
+    };
+}
+
+.adress__title{
+    color: $color-text;
+    @include font($height:130%, $size:3.5rem);
+    margin-top: 1.6rem;
+    margin-bottom: 1.3rem;
+    @include media-mobilesmall {
+        @include font($height:130%, $size:2.5rem);
+        text-align: center;
+        padding: 0 3px;
+        margin-bottom: 20px;
+    };
+}
+
+.contacts__image{
+    @include media-mobilesmall {
+        width: 260px;
+        margin-top: 1rem;
+    };
+}
+
+.adress__text{
+    color: $color-primary;
+    @include font($height:115%, $size:2rem);
+    padding-left: 2rem;
+    margin-bottom: 1.7rem;
+}
+
+.point, .phone, .email{
+    display: flex;
+    align-items: center;
+}
+
+.email{
+    padding-bottom: 1rem;
+    @include media-mobilesmall {
+        margin-left: 1.3rem;
+    };
+}
+
+.phone{
+    @include media-mobilesmall {
+        margin-left: 1.7rem;
+    };
+}
+
+.point{
+    padding-bottom: 0rem;
+    @include media-mobilesmall {
+        margin-bottom: 0.8rem;
+    };
+    
+}
+
+.text2{
+    margin-top: 1rem;
+}

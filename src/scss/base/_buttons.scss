@@ -1,0 +1,49 @@
+.button{
+    @extend %transition;
+    padding: 14px 44px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size:  1.7rem;
+    line-height: 2.2rem;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    &_bordered{
+        background: none;
+        border: 2px solid #F1CDB3;
+        border-radius: 100px;
+        color: $color-text-button;
+    };
+    &_colored{
+        background: $color-primary;
+        border: none;
+        border-radius: 100px;
+        color: $color-text-button;
+    };
+    &:hover{
+        background: $color-primary-light;
+    }
+}
+
+.promo__button{
+    padding-top: 42px;
+    @include media-tablet {
+       display: flex;
+       justify-content: center;
+    };
+    @include media-mobilesmall {
+        padding-top: 43px;
+    };
+}
+
+.friends__button{
+    margin-top: 6.1rem;
+    @include media-mobilesmall {
+        margin-top: 8.7rem;
+    };
+}
+
+.paginate__button{
+    margin-top: 0.3rem;
+}
+

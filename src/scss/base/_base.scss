@@ -1,0 +1,267 @@
+html{
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+body{
+    @extend %font-main;
+    @include font($size:1.5rem, $height:160%);
+    margin: 0;
+}
+
+.container{
+    display: none;
+}
+
+.display .container{
+    display: block;
+}
+
+.shadow-wrapper{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.menu{
+    display: none;
+    @include media-tablet {
+        display: block;
+    };
+    // .header-nav{
+    //     background: $color-text-button;
+    // };
+    position: fixed;
+    width: 320px;
+    height: 100%;
+    z-index: 5;
+    background: $color-text-button;
+    right: -320px;
+    top: 0;
+    transition: right 0.5s;
+    &__items {
+        @include font($height:160%, $size:32px, $spacing:0);
+        position: absolute;
+        top: 40%;
+        left: 20%;
+        transform: translate(-10%, -50%);
+        text-align: center;
+        padding:0;
+        list-style-type: none;
+        color: $color-background-card;
+    }
+    &-link{
+        margin-bottom: 40px;
+        position: relative;
+    }
+    &-link::before, &-link-pets::before{
+        content: attr(data-content);
+        position: absolute;
+        left: 0;
+        color: #c29525;
+        width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: width .3s ease-in-out;
+    }
+    &-link:hover::before, &-link-pets:hover::before{
+        width: 100%;
+    }
+}
+
+.showModal{
+    display: block;
+}
+
+.popup{
+    background-color: #FFFFFF;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    width: 900px;
+    @include tablet{
+        width: 630px;
+    }
+    @include media-mobilemini{
+        width: 240px;
+    }
+    &__image{
+        width: 500px;
+        height: 500px;
+        @include tablet{
+            width: 350px;
+            height: 350px;
+        }
+        @include media-mobilemini{
+          display: none;
+        }
+    }
+    &__name{
+        @include font($height:130%, $size:3.5rem);
+        padding-left: 26px;
+        @include tablet{
+           margin-top: 5px;
+           margin-bottom: 5px;
+        }
+        @include media-mobilemini{
+            padding-left: 0;
+            text-align: center;
+        }
+    }
+    &__type-breed{
+        @include font($height:115%, $size:2rem);
+        padding-left: 26px;
+        @include tablet{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        @include media-mobilemini{
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding-left: 0;
+            text-align: center;
+        }
+    }
+    &__description{
+        @include font($height:110%, $size:1.5rem);
+        padding-right:20px;
+        padding-left: 26px;
+        @include tablet{
+            @include font($height:110%, $size:1.3rem);
+            
+        }
+        @include media-mobilemini{
+            padding: 0 5px;
+            @include font($height:110%, $size:1.3rem);
+        }
+    }
+    &__popup-list{
+        @include media-mobilemini{
+            margin-top: 0;
+            padding-left: 22px;
+        }
+        
+    }
+    & li{
+        @include font($height:110%, $size:1.5rem);
+        color: $color-primary;
+        padding: 10px;
+        & span{
+            color: #000000;
+        }
+        & span.var{
+            font-weight: 700;
+        }
+        @include tablet{
+            padding: 5px 0;
+            @include font($height:110%, $size:1.3rem);
+            
+        }
+    }
+
+
+}
+
+
+.showPopup{
+    display: flex;
+}
+
+.menu-pets{
+    background: #FFFFFF;
+    &__items {
+        color: $color-text-button;
+    };
+}
+
+.menu__item{
+    margin-bottom: 20px;
+}
+
+.menu-link-pets{
+    color: $color-text-button;
+}
+
+.change .menu{
+    right: 0;
+}
+
+h1{ 
+    @extend %font-add;
+    @include font($size:4.4rem, $height:130%);
+}
+
+h1.header__title-pets{ 
+    @extend %font-add;
+    @include font($size:3.2rem, $height:110%);
+    margin: 0;
+}
+
+h2{
+    @extend %font-add;
+    @include font($size:3.5rem, $height:130%);
+}
+
+h3{
+    @extend %font-add;
+    @include font($size:3.2rem, $height:110%);
+}
+
+h4{
+    @extend %font-add;
+    @include font($size:2rem, $height:115%);
+}
+
+a {
+    text-decoration: none; 
+    color: $color-text-heading;
+}
+
+.email__link{
+    font-family: "Georgia";
+    color: $color-primary;
+    @include font($height:115%, $size:2rem);
+}
+                   
+.phone__link{
+    font-family: "Georgia";
+    color: $color-primary;
+    @include font($height:115%, $size:2rem);
+}
+
+.point__link{
+    font-family: "Georgia";
+    color: $color-primary;
+    @include font($height:115%, $size:2rem);
+}
+
+.navigation__link-pets a{
+    text-decoration: none; 
+    color: $color-text-content; 
+}
+
+.active{
+    color: $color-background-card;
+    border-bottom: 3px solid $color-primary;
+    padding-bottom: 3px;
+}
+
+.menu-pets .active{
+    color: #292929;
+}
+
+.button-link{
+    text-decoration: none; 
+    font-family: 'Georgia';
+    color: #292929;
+    @include font($height:130%, $spacing:0.06em, $size:1.7rem);
+}

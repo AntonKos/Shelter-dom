@@ -1,0 +1,113 @@
+.addition{
+    background: $color-background-light;
+    padding: 87px 0 90px;
+    @include media-tablet {
+        padding: 87px 0 92px;
+    };
+    @include media-mobilesmall {
+        padding: 54px 0 32px;
+    };
+}
+
+.addition__wrapper{
+    display: flex;
+    justify-content: space-around;
+    @include media-tablet {
+        flex-direction: column-reverse;
+        align-items: center;
+        row-gap: 50px;
+    };
+    @include media-mobilesmall {
+        row-gap: 34px;
+    };
+    
+}
+
+.addition__image-wrapper{
+    margin-left:12.7rem;
+    @include media-tablet {
+        margin: 0;
+    };
+}
+
+.addition__image{
+    @include media-mobilesmall {
+        width: 260px;
+    };
+}
+
+.addition__content{
+    max-width: 38rem;
+    margin-right: 12.7rem;
+    @include media-tablet {
+        margin: 0;
+    };
+    @include media-mobilesmall {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+    };
+}
+
+.account-wrapper{
+    max-width: 34.9rem;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    background-color: $color-primary;
+    @include font($height:115%, $size:2rem);
+    @include media-mobilesmall {
+        width: 281px;
+    };
+}
+
+.account-wrapper__number{
+    padding-left: 1.5rem;
+}
+
+.addition__title{
+    max-width: 30rem;
+    margin: 0;
+    margin-top: -0.6rem;
+    @include media-mobilesmall {
+        @include font($height:130%, $size:2.5rem, $spacing:0.06em);
+        text-align: center;
+    };
+}
+
+.account-wrapper__icon{
+    display: flex;
+    align-items: center;
+    padding: 1rem 0rem 1rem 1.4rem
+}
+
+.addition__text{
+    @include font($height:110%, $size:1.5rem);
+    margin-top: 2rem;
+    margin-bottom: 1.8rem;
+    @include media-mobilesmall {
+        @include font($height:160%, $size:1.5rem, $spacing:0);
+    };
+}
+
+.addition__number{
+    @include font($height:115%, $size:2rem);
+    @include media-mobilesmall {
+        @include font($height:110%, $size:1.5rem, $spacing:0.06rem);
+        display: flex;
+        align-items: center;
+    };
+}
+
+.addition__note{
+    @include font($height:150%, $size:1.2rem, $spacing:0);
+    color: $color-text-additional;
+    font-style: italic;
+    margin-top: 2rem;
+    @include media-mobilesmall {
+        text-align: justify;
+        padding: 0 1rem;
+    };
+    
+}
+

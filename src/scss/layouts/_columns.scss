@@ -1,0 +1,4 @@
+.carousel__item-container{
+    @include columns($width:27rem, $wrap:nowrap);
+    width: 10000px;
+}

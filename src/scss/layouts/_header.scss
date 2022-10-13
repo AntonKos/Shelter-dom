@@ -1,0 +1,62 @@
+.header {
+    background: $color-background-dark;
+    padding: 60px 0 60px 0;
+    @include tablet{
+        padding: 30px 0 60px 0;
+    }
+    @include mini-tablet{
+        padding: 30px 0 30px 0;
+    };
+
+}
+
+.header-menu{
+    background: $color-text-button;
+}
+
+.header__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo{
+    position: relative;
+}
+
+
+
+.logo{
+    @extend %transition;
+    color: $color-primary;
+    line-height: 3.5rem;
+    letter-spacing: 0.06em;
+    &:hover{
+        color: $color-text;
+    }
+}
+
+.header__navigation, .header__navigation-pets{
+    @include mini-tablet{
+        display: none;
+    };
+}
+
+.header__title{
+    margin: 0;
+}
+
+.header__text{
+    color: $color-text;
+    @include font($height:1.5rem, $size:1.3rem, $spacing:0.1em);
+    margin: 10px 0 0 3px;
+}
+
+.menu__logo{
+    color: $color-primary;
+}
+
+
+
+
+

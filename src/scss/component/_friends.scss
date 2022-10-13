@@ -1,0 +1,162 @@
+.friends-main{
+    padding: 80px 0 100px;
+    background: $color-background-light;
+    @include media-tablet {
+        padding: 78px 0 100px;
+    };
+    @include media-mobilesmall {
+        padding: 44px 0 44px;
+    };
+}
+
+.friends__wrapper{
+    position: relative;
+}
+
+.carousel{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    max-width: 990px;
+    @include media-tablet {
+        max-width: 580px;
+    };
+    @include media-mobilesmall {
+        max-width: 270px;
+    };
+}
+
+.item{
+    column-gap: 9rem;
+    @include media-tablet {
+        column-gap:40px;
+    };
+}
+
+
+.carousel__item-container{
+    column-gap: 9rem;
+    position: relative;
+    top: 0;
+    left: -1080px;
+    @include media-tablet {
+        column-gap:40px;
+        left:-620px;
+    };
+    @include media-mobilemini{
+        left: -310px;
+    }
+  
+}
+
+.item{
+    display: flex;
+}
+
+.carousel__item-container.shifting {
+    transition: left 0.2s ease-out;
+}
+
+.carousel__item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: $color-background-card;
+    padding-bottom: 2.8rem;
+    cursor: pointer;
+    &:hover .carousel__button>.button_bordered{
+        background: $color-primary-light;
+    };
+    &:hover .carousel__image{
+        background: $color-background-light;
+    };
+    @include media-mobilesmall {
+        height: 435px;
+        width: 270px;
+        justify-content: start;
+    }; 
+}
+
+.carousel__title{
+    margin-top: 2.7rem;
+    margin-bottom: 3rem;
+    @include media-mobilesmall {
+        margin-top: 3rem;
+    };
+}
+
+@keyframes move-right {
+    from {left: -1080px;}
+    to {left: -2160px;}
+}
+
+.transition-right {
+    animation-name: move-right;
+    animation-duration: 1s;
+}
+
+@keyframes move-left {
+    from {left: -1080px;}
+    to {left: 0px;}
+}
+  
+.transition-left {
+    animation-name: move-left;
+    animation-duration: 1s;
+}
+
+@include media-tablet {
+    @keyframes move-right {
+        from {left: -620px;}
+        to {left: -1240px;}
+    }
+    @keyframes move-left {
+        from {left: -620px;}
+        to {left: 0px;}
+    }
+};
+
+@include media-mobilemini{
+    @keyframes move-right {
+        from {left: -310px;}
+        to {left: -620px;}
+    }
+    @keyframes move-left {
+        from {left: -310px;}
+        to {left: 0px;}
+    }
+}
+
+.friends__wrapper, .friends__wrapper-pets{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.friends__title-main, .friends__title-pets, .friends__button{
+    align-self: center;
+}
+
+.friends__title-main, .friends__title-pets{
+    max-width: 40rem;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 6rem;
+
+    @include media-mobilesmall {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 130%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.06em;
+        margin-bottom: 4rem;
+    };
+}
+
+
+

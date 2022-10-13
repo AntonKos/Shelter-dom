@@ -1,0 +1,27 @@
+.navigation{
+    display: flex;
+    margin-top: 1rem;
+}
+
+.navigation__link{
+    @extend %transition;
+    & a:hover{
+        color: $color-background-card;
+        cursor: pointer;
+    };
+    list-style: none;
+    padding-left: 3.6rem;
+    color: #FAFAFA;
+    @include font($height:160%, $spacing:0);
+}
+
+.navigation__link-pets{
+    @extend %transition;
+    & a:hover{
+        color: $color-text-button;
+        cursor: pointer;
+    };
+    list-style: none;
+    padding-left: 3.6rem;
+    @include font($height:160%, $spacing:0); 
+}

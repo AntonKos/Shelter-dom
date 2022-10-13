@@ -1,0 +1,32 @@
+.header-pets {
+    background: $color-background-white;
+    padding:30px 0 30px 0;
+    color: $color-text-content;
+    position: sticky; 
+    top: 0;
+}
+
+.header-menu-pets{
+    position: relative;
+}
+
+.header__title-pets{
+    z-index: 7;
+}
+
+.logo-pets {
+    @extend %transition;
+    color: $color-text-content;
+    line-height: 3.5rem;
+    letter-spacing: 0.06em;
+    &:hover{
+        color: $color-text-button;
+    };
+    z-index: 6;
+}
+
+.header__text-pets{
+    color: $color-text-button;
+    @include font($height:1.5rem, $size:1.3rem, $spacing:0.1em);
+    z-index: 6;
+}
