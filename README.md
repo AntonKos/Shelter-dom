@@ -1,3 +1,7 @@
+https://shelter-antonkos88.netlify.app/
+
+html, css, js, webpack, MVC
+
 # 🚀 Welcome to your new awesome project!
 
 This project has been created using **webpack-cli**, you can now run
