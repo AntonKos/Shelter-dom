@@ -13,7 +13,7 @@ const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader
 
 
 const config = {
-    entry: ['./src/index.js', './src/scss/style.scss'],
+    entry: ['./src/index.ts', './src/scss/style.scss'],
     output: {
         filename: 'script.js',
         path: path.resolve(__dirname, 'dist'),
