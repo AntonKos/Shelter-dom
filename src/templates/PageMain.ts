@@ -14,7 +14,7 @@ const PageMain = () => `
     ${Spinner()}
     <div class="container">
       ${ShadowWrapper()}
-      <div class="popup">  </div>
+        <div class="popup">  </div>
       ${IconClose()}
       ${HeaderMain()}
       ${Menu()}

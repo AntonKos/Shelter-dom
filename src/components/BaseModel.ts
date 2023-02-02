@@ -1,6 +1,13 @@
 import cards from '../cards';
 
 export default class BaseModel {
+
+  cards:{}[];
+  items:{}[];
+  isPopapOpen:boolean;
+  isBurgerOpen:boolean;
+  itemCount:number;
+
   constructor() {
     this.cards = cards;
     this.items = cards.map((obj) => ({ name:obj.name, image: obj.img, type: obj.type, breed: obj.breed, description:obj.description, age:obj.age, inoculations:obj.inoculations, diseases:obj.diseases, parasites:obj.parasites}));
@@ -8,4 +15,6 @@ export default class BaseModel {
     this.isBurgerOpen = false; 
     this.itemCount = 3;
   }
+  
+  
 }

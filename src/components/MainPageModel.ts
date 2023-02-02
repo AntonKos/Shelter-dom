@@ -2,6 +2,8 @@ import cards from '../cards';
 import BaseModel from './BaseModel';
 
 export default class MainPageModel extends BaseModel {
+    lastArray:number[];
+    itemCount:number;
     constructor() {
       super();
       this.lastArray = [];
@@ -24,7 +26,7 @@ export default class MainPageModel extends BaseModel {
     fillWrapper(){ 
 
         let index = 0; 
-        const array = [];
+        const array:number[] = [];
 
         for(let i=0; i < this.itemCount; i++){
 

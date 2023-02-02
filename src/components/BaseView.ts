@@ -1,14 +1,31 @@
 
 export default class BaseView {
+    body:HTMLBodyElement;
+    carousel:HTMLElement;
+    wrappers:NodeListOf<HTMLDivElement>;
+    closeBtn:HTMLDivElement;
+    modal:HTMLDivElement;
+    burger:HTMLSpanElement;
+    popap:HTMLDivElement;
+
+    BTN_LEFT:HTMLDivElement;
+    BTN_RIGHT:HTMLDivElement;
+    CAROUSEL:HTMLDivElement;
+    ITEM_LEFT:HTMLDivElement;
+    ITEM_RIGHT:HTMLDivElement;
+
+    checkPopup:()=>boolean;
+    checkBurgerOpen:()=>boolean;
+    
     constructor() {
-        this.body = document.querySelector('body');
+        this.body = document.querySelector('body') as HTMLBodyElement;
     }
 
-    bindCheckPopup(callback){
+    bindCheckPopup(callback:()=>boolean){
         this.checkPopup = callback;
     }
 
-    bindClickCloseBtnListener(handler){
+    bindClickCloseBtnListener(handler:()=>void){
         this.closeBtn.addEventListener('click', ()=>{
             this.modal.classList.toggle("showModal");
             handler();// isPopapOpen = !isPopapOpen;
@@ -18,7 +35,7 @@ export default class BaseView {
         })
     }
 
-    bindClickOutsideListener(handler1, handler2){
+    bindClickOutsideListener(handler1:()=>void, handler2:()=>void){
         window.addEventListener('click', (e)=>{
            
             if(e.target == this.modal && !this.checkPopup()){ 
@@ -38,11 +55,11 @@ export default class BaseView {
         });
     }
 
-    bindCheckBurgerOpen(callback){
+    bindCheckBurgerOpen(callback:()=>boolean){
         this.checkBurgerOpen = callback;
     }
 
-    bindOpenCloseBurger(handler){
+    bindOpenCloseBurger(handler:()=>void){
         this.burger.addEventListener('click', ()=>{
             this.body.classList.toggle("change");
             this.modal.classList.toggle("showModal");
@@ -51,7 +68,7 @@ export default class BaseView {
         });
     }
   
-    bindChangeBurger(handler){
+    bindChangeBurger(handler:()=>void){
        window.addEventListener('hashchange', ()=>{ 
             if(this.checkBurgerOpen()){ 
                 this.body.classList.toggle("change");
@@ -61,5 +78,4 @@ export default class BaseView {
             }
         });
     }
-
 }

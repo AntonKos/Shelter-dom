@@ -4,6 +4,15 @@ import Popup from '../templates/Popup';
 import BaseView from './BaseView';
 
 export default class PetsPageView extends BaseView{
+
+    carousel:any;
+    wrappers:any;
+    closeBtn:any;
+    modal:any;
+    burger:any;
+    popap:any;
+    fillWrapper:()=>number[];
+
     constructor() {
         super();
         this.body.innerHTML = PagePets();
@@ -51,7 +60,7 @@ export default class PetsPageView extends BaseView{
         };
     }
 
-    bindFillWrapper(callback){
+    bindFillWrapper(callback:()=>number[]){
         this.fillWrapper = callback;
     }
 

@@ -1,5 +1,11 @@
+import IModel from "../templates/IModel";
+import IView from "../templates/IView";
+
 export default class BaseController {
-    constructor(model, view) {
+  model:IModel;
+  view:IView;
+  
+    constructor(model:IModel, view:IView) {
       this.model = model;
       this.view = view;
   

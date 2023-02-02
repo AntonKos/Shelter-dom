@@ -1,7 +1,11 @@
 import BaseController from "./Basecontroller";
+import IModel from "../templates/IModel";
+import IView from "../templates/IView";
 
 export default class MainPageController extends BaseController{
-    constructor(model, view) {
+  model:IModel;
+  view:IView;
+    constructor(model:IModel, view:IView) {
       super(model, view);
 
       this.model.checkWindowSize();

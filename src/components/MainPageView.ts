@@ -6,24 +6,25 @@ import Popup from '../templates/Popup';
 import BaseView from './BaseView';
 
 export default class MainPageView extends BaseView {
+    fillWrapper:()=>number[];
     constructor() {
         super();
         this.body.innerHTML = PageMain();
-        this.carousel = document.querySelector('.carousel');
+        this.carousel = document.querySelector('.carousel') as HTMLElement;
 
-        carousel.innerHTML = Container();
+        this.carousel.innerHTML = Container();
 
-        this.wrappers = document.querySelectorAll('.item');
-        this.closeBtn = document.querySelector('.icon-close'); 
-        this.modal  = document.querySelector('.shadow-wrapper'); 
-        this.burger = document.querySelector('.hamburger');
-        this.popap = document.querySelector('.popup');
+        this.wrappers = document.querySelectorAll<HTMLDivElement>('.item');
+        this.closeBtn = document.querySelector('.icon-close') as HTMLDivElement; 
+        this.modal  = document.querySelector('.shadow-wrapper') as HTMLDivElement; 
+        this.burger = document.querySelector('.hamburger') as HTMLSpanElement;
+        this.popap = document.querySelector('.popup') as HTMLDivElement;
     
-        this.BTN_LEFT = document.querySelector('#prev'); 
-        this.BTN_RIGHT = document.querySelector('#next');
-        this.CAROUSEL = document.querySelector('#item-container');
-        this.ITEM_LEFT = document.querySelector("#item-left");
-        this.ITEM_RIGHT = document.querySelector("#item-right");
+        this.BTN_LEFT = document.querySelector('#prev') as HTMLDivElement; 
+        this.BTN_RIGHT = document.querySelector('#next') as HTMLDivElement;
+        this.CAROUSEL = document.querySelector('#item-container') as HTMLDivElement;
+        this.ITEM_LEFT = document.querySelector("#item-left") as HTMLDivElement;
+        this.ITEM_RIGHT = document.querySelector("#item-right") as HTMLDivElement;
 
         this.addBtnListener();
         this.addShowBodyListener();
@@ -106,7 +107,7 @@ export default class MainPageView extends BaseView {
         this.BTN_RIGHT.removeEventListener("click", this.moveRight);
     };
 
-    bindFillWrapper(callback){
+    bindFillWrapper(callback:()=>number[]){
         this.fillWrapper = callback;
     }
 
