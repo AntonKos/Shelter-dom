@@ -1,9 +1,10 @@
 import cards from '../cards';
-
+import ICard from '../templates/ICard';
+import IItem from '../templates/IItem';
 export default class BaseModel {
 
-  cards:{}[];
-  items:{}[];
+  cards:ICard[];
+  items:IItem[];
   isPopapOpen:boolean;
   isBurgerOpen:boolean;
   itemCount:number;

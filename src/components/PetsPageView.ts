@@ -2,6 +2,8 @@ import PagePets from '../templates/PagePets';
 import  ItemPets  from '../templates/ItemPets';
 import Popup from '../templates/Popup';
 import BaseView from './BaseView';
+import IItem from '../templates/IItem';
+import ICard from '../templates/ICard';
 
 export default class PetsPageView extends BaseView{
 
@@ -27,11 +29,11 @@ export default class PetsPageView extends BaseView{
     }
 
 
-    setItems = (items) => {  
+    setItems = (items:IItem[]) => {  
         this.carousel.innerHTML = items.map((item) => ItemPets({...item})).join('');
     }
 
-    bindSetPopap(handler, cards) {
+    bindSetPopap(handler:()=>void, cards:ICard[]) {
      
       const itemsCarousel = document.querySelectorAll('.paginate__item');
       

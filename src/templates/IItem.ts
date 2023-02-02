@@ -1,7 +1,6 @@
-interface ICard  {
-
+interface IItem  {
    name: string; 
-   img: string; 
+   image: string; 
    type: string; 
    breed: string; 
    description: string; 
@@ -9,8 +8,6 @@ interface ICard  {
    inoculations: string[]; 
    diseases: string[]; 
    parasites: string[];
-  // [key: string]: any
-  
 }
 
-export default ICard;
+export default IItem;

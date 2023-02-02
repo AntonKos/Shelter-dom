@@ -4,6 +4,8 @@ import  Container  from '../templates/Container';
 import  ItemMain  from '../templates/ItemMain';
 import Popup from '../templates/Popup';
 import BaseView from './BaseView';
+import IItem from '../templates/IItem';
+import ICard from '../templates/ICard';
 
 export default class MainPageView extends BaseView {
     fillWrapper:()=>number[];
@@ -30,17 +32,17 @@ export default class MainPageView extends BaseView {
         this.addShowBodyListener();
     }
 
-    bindSetPopap(handler, cards) {
+    bindSetPopap(handler:()=>void, cards:ICard[]) {
      
       const itemsCarousel = document.querySelectorAll('.carousel__item');
      
-      itemsCarousel.forEach(element => {
+      itemsCarousel.forEach((element) => {
         element.addEventListener('click', (event) =>{ 
           if (event.currentTarget.classList.contains('carousel__item')) {
             this.modal.classList.toggle("showModal");
             handler(); // isPopapOpen = !isPopapOpen;
-            const object = cards.find(card => card.name === event.currentTarget.dataset.name); 
-            this.popap = document.querySelector('.popup');
+            const object = cards.find((card:ICard) => card.name === event.currentTarget.dataset.name); 
+            this.popap = document.querySelector('.popup') as HTMLDivElement;
             this.popap.innerHTML = Popup(object);
             this.popap.classList.toggle("showPopup");
             this.body.style.overflow = "hidden";
@@ -64,10 +66,10 @@ export default class MainPageView extends BaseView {
         this.BTN_RIGHT.addEventListener('click', this.moveRight);
     }
 
-    addAnimationEndListener = (handler,cards,items) => {
+    addAnimationEndListener = (handler:()=>void, cards:ICard, items:IItem[]) => {
         this.CAROUSEL.addEventListener('animationend',(animationEvent)=>{
-            let changedItem;
-            let opositeItem;
+            let changedItem:HTMLDivElement;
+            let opositeItem:HTMLDivElement;
             if (animationEvent.animationName === "move-left") {
                 this.CAROUSEL.classList.remove('transition-left');
                 changedItem = this.ITEM_LEFT;
@@ -111,7 +113,7 @@ export default class MainPageView extends BaseView {
         this.fillWrapper = callback;
     }
 
-    setWrappers(items){
+    setWrappers(items:IItem[]){
         this.wrappers.forEach(element => {
             element.innerHTML = ''; 
            
