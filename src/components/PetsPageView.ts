@@ -1,29 +1,24 @@
 import PagePets from '../templates/PagePets';
 import  ItemPets  from '../templates/ItemPets';
 import Popup from '../templates/Popup';
+import ItemMain from '../templates/ItemMain';
 import BaseView from './BaseView';
 import IItem from '../templates/IItem';
 import ICard from '../templates/ICard';
 
 export default class PetsPageView extends BaseView{
 
-    carousel:any;
-    wrappers:any;
-    closeBtn:any;
-    modal:any;
-    burger:any;
-    popap:any;
     fillWrapper:()=>number[];
 
     constructor() {
         super();
         this.body.innerHTML = PagePets();
-        this.carousel = document.querySelector('.paginate'); 
-        this.wrappers = document.querySelectorAll('.item');
-        this.closeBtn = document.querySelector('.icon-close'); 
-        this.modal  = document.querySelector('.shadow-wrapper'); 
-        this.burger = document.querySelector('.hamburger');
-        this.popap = document.querySelector('.popup');
+        this.carousel = document.querySelector('.paginate') as HTMLDivElement; 
+        this.wrappers = document.querySelectorAll<HTMLDivElement>('.item');
+        this.closeBtn = document.querySelector('.icon-close')as HTMLDivElement; 
+        this.modal  = document.querySelector('.shadow-wrapper')as HTMLDivElement; 
+        this.burger = document.querySelector('.hamburger')as HTMLSpanElement;
+        this.popap = document.querySelector('.popup') as HTMLDivElement;
     
         this.addShowBodyListener();
     }
@@ -39,11 +34,12 @@ export default class PetsPageView extends BaseView{
       
       itemsCarousel.forEach(element => {
         element.addEventListener('click', (event) =>{ 
-          if (event.currentTarget.classList.contains('paginate__item')) {
+        const target = event.currentTarget as HTMLElement;
+          if (target.classList.contains('paginate__item')) {
             this.modal.classList.toggle("showModal");
             handler(); // isPopapOpen = !isPopapOpen;
-            const object = cards.find(card => card.name === event.currentTarget.dataset.name); 
-            this.popap = document.querySelector('.popup');
+            const object = cards.find(card => card.name === target.dataset.name) as ICard; 
+            this.popap = document.querySelector('.popup') as HTMLDivElement;
             this.popap.innerHTML = Popup(object);
             this.popap.classList.toggle("showPopup");
             this.body.style.overflow = "hidden";
@@ -65,5 +61,18 @@ export default class PetsPageView extends BaseView{
     bindFillWrapper(callback:()=>number[]){
         this.fillWrapper = callback;
     }
+    
+    setWrappers(items:IItem[]){
+        this.wrappers.forEach(element => {
+            element.innerHTML = ''; 
+           
+            const arrayOfIndexes = this.fillWrapper(); 
+            arrayOfIndexes.forEach(index => {
+                element.innerHTML += ItemMain(items[index]);
+            })
+        });      
+    }
+
+   
 
 }

@@ -38,12 +38,14 @@ export default class MainPageView extends BaseView {
      
       itemsCarousel.forEach((element) => {
         element.addEventListener('click', (event) =>{ 
-          if (event.currentTarget.classList.contains('carousel__item')) {
+        const target = event.currentTarget as HTMLElement;
+          if (target.classList.contains('carousel__item')) {
             this.modal.classList.toggle("showModal");
             handler(); // isPopapOpen = !isPopapOpen;
-            const object = cards.find((card:ICard) => card.name === event.currentTarget.dataset.name); 
+            const object = cards.find((card:ICard) => card.name === target.dataset.name) as ICard; 
+            console.log(object)
             this.popap = document.querySelector('.popup') as HTMLDivElement;
-            this.popap.innerHTML = Popup(object);
+            this.popap.innerHTML = Popup(object as ICard);
             this.popap.classList.toggle("showPopup");
             this.body.style.overflow = "hidden";
             this.closeBtn.style.display = "flex";
@@ -66,7 +68,7 @@ export default class MainPageView extends BaseView {
         this.BTN_RIGHT.addEventListener('click', this.moveRight);
     }
 
-    addAnimationEndListener = (handler:()=>void, cards:ICard, items:IItem[]) => {
+    addAnimationEndListener = (handler:()=>void, cards:ICard[], items:IItem[]) => {
         this.CAROUSEL.addEventListener('animationend',(animationEvent)=>{
             let changedItem:HTMLDivElement;
             let opositeItem:HTMLDivElement;
@@ -74,12 +76,14 @@ export default class MainPageView extends BaseView {
                 this.CAROUSEL.classList.remove('transition-left');
                 changedItem = this.ITEM_LEFT;
                 opositeItem = this.ITEM_RIGHT;
-                document.querySelector("#item-active").innerHTML = this.ITEM_LEFT.innerHTML;
+                const itemActive = document.querySelector("#item-active") as HTMLDivElement;
+                itemActive.innerHTML = this.ITEM_LEFT.innerHTML;
             }else{
                 this.CAROUSEL.classList.remove('transition-right');
                 changedItem = this.ITEM_RIGHT;
                 opositeItem = this.ITEM_LEFT;
-                document.querySelector("#item-active").innerHTML = this.ITEM_RIGHT.innerHTML;
+                const itemActive = document.querySelector("#item-active") as HTMLDivElement;
+                itemActive.innerHTML  = this.ITEM_RIGHT.innerHTML;
             }
         
             changedItem.innerHTML = "";

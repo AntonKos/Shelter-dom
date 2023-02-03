@@ -1,4 +1,5 @@
-const Popup = (data) => `
+import ICard from "./ICard";
+const Popup = (data:ICard) => `
 
   <img class="popup__image" src=${data.img} alt="">
   <div class="popup__wrapper">

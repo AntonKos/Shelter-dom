@@ -1,4 +1,5 @@
- const ItemMain = (data) => `
+import IItem from "./IItem";
+const ItemMain = (data:IItem) => `
 
 <div class="carousel__item carousel__item_active" data-name="${data.name}">
     <img src=${data.image} class="carousel__image" alt="">

@@ -12,7 +12,7 @@ interface IView {
   setWrappers:(arg0:IItem[])=>void;
   bindSetPopap:(arg0:()=>void, arg1:ICard[])=>void;
   addAnimationEndListener:(arg0:()=>void,  arg1:ICard[],  arg2:IItem[])=>void;
-  setItems?:(arg0:IItem[])=>void;
+  setItems:(arg0:IItem[])=>void;
 
 }
 

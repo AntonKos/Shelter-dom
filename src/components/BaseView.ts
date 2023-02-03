@@ -1,4 +1,5 @@
-
+import IItem from '../templates/IItem';
+import ICard from '../templates/ICard';
 export default class BaseView {
     body:HTMLBodyElement;
     carousel:HTMLElement;
@@ -33,6 +34,14 @@ export default class BaseView {
             this.body.style.overflow = "visible";
             this.closeBtn.style.display = "none";
         })
+    }
+
+    addAnimationEndListener = (handler:()=>void, cards:ICard[], items:IItem[]) => {
+        
+    }
+
+    setItems = (items:IItem[]) => {  
+        
     }
 
     bindClickOutsideListener(handler1:()=>void, handler2:()=>void){

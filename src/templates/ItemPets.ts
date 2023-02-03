@@ -1,4 +1,5 @@
-const ItemPets = (data) => `
+import IItem from "./IItem";
+const ItemPets = (data:IItem) => `
 
 <div class="paginate__item paginate__item_active" data-name="${data.name}">
     <img src=${data.image} class="paginate__image" alt="">
