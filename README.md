@@ -1,6 +1,6 @@
 https://shelter-antonkos88.netlify.app/
 
-html, css, js, webpack, MVC
+html, css, js, ts, webpack, MVC
 
 # 🚀 Welcome to your new awesome project!
 
