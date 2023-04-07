@@ -8,6 +8,7 @@ interface IModel {
   checkWindowSize:()=>void;
   items:IItem[];
   cards:ICard[];
+  filteredItems?:any;
 }
 
 export default IModel;

@@ -50,7 +50,7 @@ export default class BaseModel {
     if(window.innerWidth === 1280){
         this.itemCount = 3;
     }
-    }
+  }
   
   
 }
