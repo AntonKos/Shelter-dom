@@ -9,6 +9,7 @@ import ICard from '../templates/ICard';
 export default class PetsPageView extends BaseView{
 
     fillWrapper:()=>number[];
+    checkLastPage:any;
 
     constructor() {
         super();
@@ -19,7 +20,6 @@ export default class PetsPageView extends BaseView{
         this.modal  = document.querySelector('.shadow-wrapper')as HTMLDivElement; 
         this.burger = document.querySelector('.hamburger')as HTMLSpanElement;
         this.popap = document.querySelector('.popup') as HTMLDivElement;
-        // document.querySelector('#next').addEventListener('click', nextPage, false);
         this.addShowBodyListener();
     }
 
@@ -47,33 +47,42 @@ export default class PetsPageView extends BaseView{
             }
           })
         }); 
-
     }
 
-    nextPage(handler:any) {
+    bindNextPageHandler(handler:any, handler2:any){
+      const nextBtn = document.querySelector('#next') as HTMLDivElement;
+      nextBtn.addEventListener('click', ()=>{
         const arrayOfModelValues = handler();
-          if(arrayOfModelValues){
-            let [curPage, filteredItems, items, countCardsOnPage] = arrayOfModelValues;
-          document.querySelector('#page').innerHTML = curPage;
-          setItems(filteredItems);
-          setPopup();
-          if (curPage == 1) {
-              document.querySelector('#prev').classList.add('blocked');
-              document.querySelector('#start').classList.add('blocked');
-            } else {
-              document.querySelector('#prev').classList.remove('blocked');
-              document.querySelector('#start').classList.remove('blocked');
-            }
-            if (curPage == numPages() && items.length > countCardsOnPage) {
-              document.querySelector('#next').classList.add('blocked');
-              document.querySelector('#end').classList.add('blocked');
-            } else {
-              document.querySelector('#next').classList.remove('blocked');
-              document.querySelector('#end').classList.remove('blocked');
-            }
-        }                                         
-      } 
+        if(arrayOfModelValues){
+        const [curPage, filteredItems, items, countCardsOnPage] = arrayOfModelValues;
+        const pageNumber = document.querySelector('#page') as HTMLDivElement;
+        const prevBtn = document.querySelector('#prev') as HTMLDivElement;
+        const nextBtn = document.querySelector('#next') as HTMLDivElement;
+        const startBtn = document.querySelector('#start') as HTMLDivElement;
+        const endBtn = document.querySelector('#end') as HTMLDivElement;
 
+        pageNumber.innerHTML = curPage;
+        this.setItems(filteredItems);
+        // setPopup();
+        if (curPage == 1) {
+          prevBtn.classList.add('blocked');
+          startBtn.classList.add('blocked');
+          } else {
+            prevBtn.classList.remove('blocked');
+            startBtn.classList.remove('blocked');
+          }
+          if (curPage == handler2() && items.length > countCardsOnPage) { //handler2()?
+            nextBtn.classList.add('blocked');
+            endBtn.classList.add('blocked');
+          } else {
+            nextBtn.classList.remove('blocked');
+            endBtn.classList.remove('blocked');
+          }
+      }                 
+      }, false);
+    }
+
+   
     addShowBodyListener(){
         window.onload = () =>{
             setTimeout(()=>{

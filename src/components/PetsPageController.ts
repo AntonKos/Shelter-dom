@@ -10,6 +10,11 @@ export default class PetsPageController extends BaseController {
         super(model, view);
         this.view.setItems(this.model.filteredItems);
         this.view.bindSetPopap(this.handleChangePopup, this.model.cards);
+        this.view.bindNextPageHandler(this.onNextPage, this.model.numPages);
+    }
+
+    onNextPage = () => {
+        return this.model.checkLastPage();
     }
     
 

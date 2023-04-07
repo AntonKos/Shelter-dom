@@ -9,6 +9,8 @@ interface IModel {
   items:IItem[];
   cards:ICard[];
   filteredItems?:any;
+  checkLastPage?:any;
+  numPages?:any;
 }
 
 export default IModel;
