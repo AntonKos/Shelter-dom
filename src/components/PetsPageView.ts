@@ -19,7 +19,7 @@ export default class PetsPageView extends BaseView{
         this.modal  = document.querySelector('.shadow-wrapper')as HTMLDivElement; 
         this.burger = document.querySelector('.hamburger')as HTMLSpanElement;
         this.popap = document.querySelector('.popup') as HTMLDivElement;
-    
+        // document.querySelector('#next').addEventListener('click', nextPage, false);
         this.addShowBodyListener();
     }
 
@@ -49,6 +49,30 @@ export default class PetsPageView extends BaseView{
         }); 
 
     }
+
+    nextPage(handler:any) {
+        const arrayOfModelValues = handler();
+          if(arrayOfModelValues){
+            let [curPage, filteredItems, items, countCardsOnPage] = arrayOfModelValues;
+          document.querySelector('#page').innerHTML = curPage;
+          setItems(filteredItems);
+          setPopup();
+          if (curPage == 1) {
+              document.querySelector('#prev').classList.add('blocked');
+              document.querySelector('#start').classList.add('blocked');
+            } else {
+              document.querySelector('#prev').classList.remove('blocked');
+              document.querySelector('#start').classList.remove('blocked');
+            }
+            if (curPage == numPages() && items.length > countCardsOnPage) {
+              document.querySelector('#next').classList.add('blocked');
+              document.querySelector('#end').classList.add('blocked');
+            } else {
+              document.querySelector('#next').classList.remove('blocked');
+              document.querySelector('#end').classList.remove('blocked');
+            }
+        }                                         
+      } 
 
     addShowBodyListener(){
         window.onload = () =>{

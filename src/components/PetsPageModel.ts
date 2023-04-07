@@ -18,6 +18,14 @@ export default class PetsPageModel extends BaseModel {
       this.filteredItems = this.filterItems();
     }
 
+    checkLastPage(){
+        if ((this.curPage * this.countCardsOnPage) < this.filteredItems.length){
+            this.curPage++;
+            this.filteredItems = this.filterItems();
+            return [this.curPage, this.filteredItems, this.items, this.countCardsOnPage];
+        } 
+    }
+
     filterItems() {
         const filteredItems = this.items.filter(((row,index)=>{
           let start = (this.curPage - 1) * this.countCardsOnPage;
