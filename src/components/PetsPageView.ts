@@ -10,6 +10,11 @@ export default class PetsPageView extends BaseView{
 
     fillWrapper:()=>number[];
     checkLastPage:any;
+    pageNumber:any;
+    prevBtn:any;
+    nextBtn:any;
+    startBtn:any;
+    endBtn:any;
 
     constructor() {
         super();
@@ -20,9 +25,14 @@ export default class PetsPageView extends BaseView{
         this.modal  = document.querySelector('.shadow-wrapper')as HTMLDivElement; 
         this.burger = document.querySelector('.hamburger')as HTMLSpanElement;
         this.popap = document.querySelector('.popup') as HTMLDivElement;
+
+        this.pageNumber = document.querySelector('#page') as HTMLDivElement;
+        this.prevBtn = document.querySelector('#prev') as HTMLDivElement;
+        this.nextBtn = document.querySelector('#next') as HTMLDivElement;
+        this.startBtn = document.querySelector('#start') as HTMLDivElement;
+        this.endBtn = document.querySelector('#end') as HTMLDivElement;
         this.addShowBodyListener();
     }
-
 
     setItems = (items:IItem[]) => {  
         this.carousel.innerHTML = items.map((item) => ItemPets({...item})).join('');
@@ -50,33 +60,27 @@ export default class PetsPageView extends BaseView{
     }
 
     bindNextPageHandler(handler:any, handler2:any){
-      const nextBtn = document.querySelector('#next') as HTMLDivElement;
-      nextBtn.addEventListener('click', ()=>{
+      this.nextBtn.addEventListener('click', ()=>{
         const arrayOfModelValues = handler();
         if(arrayOfModelValues){
         const [curPage, filteredItems, items, countCardsOnPage] = arrayOfModelValues;
-        const pageNumber = document.querySelector('#page') as HTMLDivElement;
-        const prevBtn = document.querySelector('#prev') as HTMLDivElement;
-        const nextBtn = document.querySelector('#next') as HTMLDivElement;
-        const startBtn = document.querySelector('#start') as HTMLDivElement;
-        const endBtn = document.querySelector('#end') as HTMLDivElement;
 
-        pageNumber.innerHTML = curPage;
+        this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
         // setPopup();
         if (curPage == 1) {
-          prevBtn.classList.add('blocked');
-          startBtn.classList.add('blocked');
+          this.prevBtn.classList.add('blocked');
+          this.startBtn.classList.add('blocked');
           } else {
-            prevBtn.classList.remove('blocked');
-            startBtn.classList.remove('blocked');
+            this.prevBtn.classList.remove('blocked');
+            this.startBtn.classList.remove('blocked');
           }
           if (curPage == handler2() && items.length > countCardsOnPage) { //handler2()?
-            nextBtn.classList.add('blocked');
-            endBtn.classList.add('blocked');
+            this.nextBtn.classList.add('blocked');
+            this.endBtn.classList.add('blocked');
           } else {
-            nextBtn.classList.remove('blocked');
-            endBtn.classList.remove('blocked');
+            this.nextBtn.classList.remove('blocked');
+            this.endBtn.classList.remove('blocked');
           }
       }                 
       }, false);

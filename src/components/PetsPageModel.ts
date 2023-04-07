@@ -71,7 +71,6 @@ export default class PetsPageModel extends BaseModel {
     }
 
     numPages = () => { // передать эту функцию не напрямую во view, а через controller
-      console.log(this.items);
       return Math.ceil(this.items.length / this.countCardsOnPage);
     }
 
