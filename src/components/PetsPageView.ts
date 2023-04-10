@@ -59,11 +59,11 @@ export default class PetsPageView extends BaseView{
         }); 
     }
 
-    bindNextPageHandler(handler:any, handler2:any){
-      this.nextBtn.addEventListener('click', ()=>{
+    bindFirstPageHandler(handler:any, handler2:any){
+      this.startBtn.addEventListener('click', ()=>{
         const arrayOfModelValues = handler();
         if(arrayOfModelValues){
-        const [curPage, filteredItems, items, countCardsOnPage] = arrayOfModelValues;
+        const [curPage, filteredItems] = arrayOfModelValues;
 
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
@@ -75,7 +75,34 @@ export default class PetsPageView extends BaseView{
             this.prevBtn.classList.remove('blocked');
             this.startBtn.classList.remove('blocked');
           }
-          if (curPage == handler2() && items.length > countCardsOnPage) { 
+          if (curPage == handler2()) {
+            this.nextBtn.classList.add('blocked');
+            this.endBtn.classList.add('blocked');
+          } else {
+            this.nextBtn.classList.remove('blocked');
+            this.endBtn.classList.remove('blocked');
+          }
+      }                 
+      }, false);
+    }
+
+    bindNextPageHandler(handler:any, handler2:any){
+      this.nextBtn.addEventListener('click', ()=>{
+        const arrayOfModelValues = handler();
+        if(arrayOfModelValues){
+        const [curPage, filteredItems] = arrayOfModelValues;
+
+        this.pageNumber.innerHTML = curPage;
+        this.setItems(filteredItems);
+        // setPopup();
+        if (curPage == 1) {
+          this.prevBtn.classList.add('blocked');
+          this.startBtn.classList.add('blocked');
+          } else {
+            this.prevBtn.classList.remove('blocked');
+            this.startBtn.classList.remove('blocked');
+          }
+          if (curPage == handler2()) { 
             this.nextBtn.classList.add('blocked');
             this.endBtn.classList.add('blocked');
           } else {
@@ -90,7 +117,7 @@ export default class PetsPageView extends BaseView{
       this.prevBtn.addEventListener('click', ()=>{
         const arrayOfModelValues = handler();
         if(arrayOfModelValues){
-        const [curPage, filteredItems, items, countCardsOnPage] = arrayOfModelValues;
+        const [curPage, filteredItems] = arrayOfModelValues;
 
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
@@ -102,7 +129,34 @@ export default class PetsPageView extends BaseView{
             this.prevBtn.classList.remove('blocked');
             this.startBtn.classList.remove('blocked');
           }
-          if (curPage == handler2() && items.length > countCardsOnPage) {
+          if (curPage == handler2()) {
+            this.nextBtn.classList.add('blocked');
+            this.endBtn.classList.add('blocked');
+          } else {
+            this.nextBtn.classList.remove('blocked');
+            this.endBtn.classList.remove('blocked');
+          }
+      }                 
+      }, false);
+    }
+
+    bindLastPageHandler(handler:any, handler2:any){
+      this.endBtn.addEventListener('click', ()=>{
+        const arrayOfModelValues = handler();
+        if(arrayOfModelValues){
+        const [curPage, filteredItems] = arrayOfModelValues;
+
+        this.pageNumber.innerHTML = curPage;
+        this.setItems(filteredItems);
+        // setPopup();
+        if (curPage == 1) {
+          this.prevBtn.classList.add('blocked');
+          this.startBtn.classList.add('blocked');
+          } else {
+            this.prevBtn.classList.remove('blocked');
+            this.startBtn.classList.remove('blocked');
+          }
+          if (curPage == handler2()) {
             this.nextBtn.classList.add('blocked');
             this.endBtn.classList.add('blocked');
           } else {
@@ -114,26 +168,26 @@ export default class PetsPageView extends BaseView{
     }
 
     addShowBodyListener(){
-        window.onload = () =>{
-            setTimeout(()=>{
-                this.body.classList.add('display');
-            }, 1000);
-        };
+      window.onload = () =>{
+        setTimeout(()=>{
+          this.body.classList.add('display');
+        }, 1000);
+      };
     }
 
     bindFillWrapper(callback:()=>number[]){
-        this.fillWrapper = callback;
+      this.fillWrapper = callback;
     }
     
     setWrappers(items:IItem[]){
-        this.wrappers.forEach(element => {
-            element.innerHTML = ''; 
+      this.wrappers.forEach(element => {
+        element.innerHTML = ''; 
            
-            const arrayOfIndexes = this.fillWrapper(); 
-            arrayOfIndexes.forEach(index => {
-                element.innerHTML += ItemMain(items[index]);
-            })
-        });      
+        const arrayOfIndexes = this.fillWrapper(); 
+        arrayOfIndexes.forEach(index => {
+          element.innerHTML += ItemMain(items[index]);
+        })
+      });      
     }
 
    

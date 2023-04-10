@@ -6,35 +6,6 @@ export default class PetsPageModel extends BaseModel {
     countCardsOnPage:number;
     objects:any;
     filteredItems:any;
-    constructor() {
-      super();
-      this.objects = []; 
-      this.pageSize = 6;
-      this.curPage = 1;
-      this.countCardsOnPage = 8;
-      this.checkWindowSize(); 
-      this.setObjects();
-      this.items = this.objects.map((obj:any, index:any) => ({ name:obj.name, image: obj.img, type: obj.type, breed: obj.breed, description:obj.description, age:obj.age, inoculations:obj.inoculations, diseases:obj.diseases, parasites:obj.parasites})); 
-      this.filteredItems = this.filterItems();
-      
-    }
-
-    checkLastPage(){      
-      if ((this.curPage * this.countCardsOnPage) < this.items.length){
-        this.curPage++;
-        this.filteredItems = this.filterItems();
-        return [this.curPage, this.filteredItems, this.items, this.countCardsOnPage];
-      } 
-    }
-
-    checkFirstPage(){      
-      if ((this.curPage > 1)){
-        this.curPage--;
-        this.filteredItems = this.filterItems();
-        return [this.curPage, this.filteredItems, this.items, this.countCardsOnPage];
-      } 
-    }
-
     filterItems = () => {
         const filteredItems = this.items.filter(((row,index)=>{
           let start = (this.curPage - 1) * this.countCardsOnPage;
@@ -44,19 +15,60 @@ export default class PetsPageModel extends BaseModel {
         return filteredItems;
       }
 
-    checkWindowSize () {
-        const width = document.body.clientWidth;
-        if(width === 1280){
-          this.pageSize = 6;
-          this.countCardsOnPage = 8;
-        }else if(width === 768){
-          this.pageSize = 8;
-          this.countCardsOnPage = 6;
-        }else if (width === 320){
-          this.pageSize = 16;
-          this.countCardsOnPage = 3;
-        }
+    checkFirstPage(){      
+      if ((this.curPage > 1)){
+        this.curPage--;
+        this.filteredItems = this.filterItems();
+        return [this.curPage, this.filteredItems];
+      } 
     }
+
+    checkLastPage(){      
+      if ((this.curPage * this.countCardsOnPage) < this.items.length){
+        this.curPage++;
+        this.filteredItems = this.filterItems();
+        return [this.curPage, this.filteredItems];
+      } 
+    }
+
+    setFirstPage(){
+      this.curPage = 1;
+      this.filteredItems = this.filterItems();
+      return [this.curPage, this.filteredItems];
+    }
+
+    setLastPage(){
+      this.curPage = this.pageSize;
+      this.filteredItems = this.filterItems();
+      return [this.curPage, this.filteredItems];
+    }
+
+    checkWindowSize () {
+            const width = document.body.clientWidth;
+            if(width === 1280){
+              this.pageSize = 6;
+              this.countCardsOnPage = 8;
+            }else if(width === 768){
+              this.pageSize = 8;
+              this.countCardsOnPage = 6;
+            }else if (width === 320){
+              this.pageSize = 16;
+              this.countCardsOnPage = 3;
+            }
+        }
+
+    constructor() {
+          super();
+          this.objects = []; 
+          this.pageSize = 6;
+          this.curPage = 1;
+          this.countCardsOnPage = 8;
+          this.checkWindowSize(); 
+          this.setObjects();
+          this.items = this.objects.map((obj:any, index:any) => ({ name:obj.name, image: obj.img, type: obj.type, breed: obj.breed, description:obj.description, age:obj.age, inoculations:obj.inoculations, diseases:obj.diseases, parasites:obj.parasites})); 
+          this.filteredItems = this.filterItems();
+          
+        }
 
     setObjects(){
         let i = 0;

@@ -15,6 +15,8 @@ interface IView {
   setItems:(arg0:IItem[])=>void;
   bindNextPageHandler?:any;
   bindPreviousPageHandler?:any;
+  bindFirstPageHandler?:any;
+  bindLastPageHandler?:any;
 }
 
 export default IView;

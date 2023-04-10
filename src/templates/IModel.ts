@@ -11,6 +11,8 @@ interface IModel {
   filteredItems?:any;
   checkLastPage?:any;
   checkFirstPage?:any;
+  setFirstPage?:any;
+  setLastPage?:any;
   numPages?:any;
 }
 
