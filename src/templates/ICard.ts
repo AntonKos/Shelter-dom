@@ -1,6 +1,6 @@
 interface ICard  {
 
-   name: string; 
+   name: string|undefined; 
    img: string; 
    type: string; 
    breed: string; 

@@ -1,6 +1,6 @@
 interface IItem  {
    name: string; 
-   image: string; 
+   img: string; 
    type: string; 
    breed: string; 
    description: string; 

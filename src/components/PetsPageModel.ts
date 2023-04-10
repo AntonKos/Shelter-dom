@@ -6,6 +6,20 @@ export default class PetsPageModel extends BaseModel {
     countCardsOnPage:number;
     objects:any;
     filteredItems:any;
+
+    constructor() {
+      super();
+      this.objects = []; 
+      this.pageSize = 6;
+      this.curPage = 1;
+      this.countCardsOnPage = 8;
+      this.checkWindowSize(); 
+      this.setObjects();
+      this.items = this.objects.map((obj:any, index:any) => ({ name:obj.name, img: obj.img, type: obj.type, breed: obj.breed, description:obj.description, age:obj.age, inoculations:obj.inoculations, diseases:obj.diseases, parasites:obj.parasites})); 
+      this.filteredItems = this.filterItems();
+          
+    }
+
     filterItems = () => {
         const filteredItems = this.items.filter(((row,index)=>{
           let start = (this.curPage - 1) * this.countCardsOnPage;
@@ -56,19 +70,6 @@ export default class PetsPageModel extends BaseModel {
               this.countCardsOnPage = 3;
             }
         }
-
-    constructor() {
-      super();
-      this.objects = []; 
-      this.pageSize = 6;
-      this.curPage = 1;
-      this.countCardsOnPage = 8;
-      this.checkWindowSize(); 
-      this.setObjects();
-      this.items = this.objects.map((obj:any, index:any) => ({ name:obj.name, image: obj.img, type: obj.type, breed: obj.breed, description:obj.description, age:obj.age, inoculations:obj.inoculations, diseases:obj.diseases, parasites:obj.parasites})); 
-      this.filteredItems = this.filterItems();
-          
-    }
 
     setObjects(){
         let i = 0;
