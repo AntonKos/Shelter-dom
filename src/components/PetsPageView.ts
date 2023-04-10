@@ -15,6 +15,7 @@ export default class PetsPageView extends BaseView{
     nextBtn:any;
     startBtn:any;
     endBtn:any;
+    changePopup:any;
 
     constructor() {
         super();
@@ -38,6 +39,10 @@ export default class PetsPageView extends BaseView{
         this.carousel.innerHTML = items.map((item) => ItemPets({...item})).join('');
     }
 
+    bindChangePopup(callback:any){
+      this.changePopup = callback;
+    }
+
     bindSetPopap(handler:()=>void, cards:ICard[]) {
      
       const itemsCarousel = document.querySelectorAll('.paginate__item');
@@ -47,16 +52,17 @@ export default class PetsPageView extends BaseView{
         const target = event.currentTarget as HTMLElement;
           if (target.classList.contains('paginate__item')) {
             this.modal.classList.toggle("showModal");
-            handler(); // isPopapOpen = !isPopapOpen;
+            this.changePopup(); // isPopapOpen = !isPopapOpen;
+            // handler(); // isPopapOpen = !isPopapOpen;
             const object = cards.find(card => card.name === target.dataset.name) as ICard; 
             this.popap = document.querySelector('.popup') as HTMLDivElement;
             this.popap.innerHTML = Popup(object);
             this.popap.classList.toggle("showPopup");
             this.body.style.overflow = "hidden";
             this.closeBtn.style.display = "flex";
-            }
-          })
-        }); 
+          }
+        })
+      }); 
     }
 
     bindFirstPageHandler(handler:any, handler2:any){
@@ -68,6 +74,7 @@ export default class PetsPageView extends BaseView{
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
         // setPopup();
+
         if (curPage == 1) {
           this.prevBtn.classList.add('blocked');
           this.startBtn.classList.add('blocked');
@@ -95,6 +102,24 @@ export default class PetsPageView extends BaseView{
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
         // setPopup();
+        const itemsCarousel = document.querySelectorAll('.paginate__item');
+      
+        itemsCarousel.forEach(element => {
+          element.addEventListener('click', (event) =>{ 
+          const target = event.currentTarget as HTMLElement;
+            if (target.classList.contains('paginate__item')) {
+              this.modal.classList.toggle("showModal");
+              this.changePopup(); // isPopapOpen = !isPopapOpen;
+              // handler(); // isPopapOpen = !isPopapOpen;
+              const object = filteredItems.find((card: { name: string | undefined; }) => card.name === target.dataset.name); 
+              this.popap = document.querySelector('.popup') as HTMLDivElement;
+              this.popap.innerHTML = Popup(object);
+              this.popap.classList.toggle("showPopup");
+              this.body.style.overflow = "hidden";
+              this.closeBtn.style.display = "flex";
+            }
+          })
+        }); 
         if (curPage == 1) {
           this.prevBtn.classList.add('blocked');
           this.startBtn.classList.add('blocked');
@@ -122,6 +147,7 @@ export default class PetsPageView extends BaseView{
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
         // setPopup();
+        
         if (curPage == 1) {
           this.prevBtn.classList.add('blocked');
           this.startBtn.classList.add('blocked');

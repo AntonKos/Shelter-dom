@@ -17,6 +17,9 @@ interface IView {
   bindPreviousPageHandler?:any;
   bindFirstPageHandler?:any;
   bindLastPageHandler?:any;
+  changePopup?:any;
+  bindChangePopup?:any;
+  
 }
 
 export default IView;

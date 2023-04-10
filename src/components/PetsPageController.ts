@@ -10,10 +10,13 @@ export default class PetsPageController extends BaseController {
     super(model, view);
     this.view.setItems(this.model.filteredItems);
     this.view.bindSetPopap(this.handleChangePopup, this.model.cards);
+
     this.view.bindNextPageHandler(this.onNextPage, this.model.numPages);
     this.view.bindPreviousPageHandler(this.onPreviousPage, this.model.numPages);
     this.view.bindFirstPageHandler(this.onFirstPage, this.model.numPages);
     this.view.bindLastPageHandler(this.onLastPage, this.model.numPages);
+    
+    this.view.bindChangePopup(this.onChangePopup);
   }
 
   onNextPage = () => {
@@ -30,5 +33,9 @@ export default class PetsPageController extends BaseController {
    
   onLastPage = () => {
     return this.model.setLastPage();
+  }
+
+  onChangePopup=()=>{
+    this.handleChangePopup()
   }
 }

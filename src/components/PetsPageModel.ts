@@ -58,17 +58,17 @@ export default class PetsPageModel extends BaseModel {
         }
 
     constructor() {
-          super();
-          this.objects = []; 
-          this.pageSize = 6;
-          this.curPage = 1;
-          this.countCardsOnPage = 8;
-          this.checkWindowSize(); 
-          this.setObjects();
-          this.items = this.objects.map((obj:any, index:any) => ({ name:obj.name, image: obj.img, type: obj.type, breed: obj.breed, description:obj.description, age:obj.age, inoculations:obj.inoculations, diseases:obj.diseases, parasites:obj.parasites})); 
-          this.filteredItems = this.filterItems();
+      super();
+      this.objects = []; 
+      this.pageSize = 6;
+      this.curPage = 1;
+      this.countCardsOnPage = 8;
+      this.checkWindowSize(); 
+      this.setObjects();
+      this.items = this.objects.map((obj:any, index:any) => ({ name:obj.name, image: obj.img, type: obj.type, breed: obj.breed, description:obj.description, age:obj.age, inoculations:obj.inoculations, diseases:obj.diseases, parasites:obj.parasites})); 
+      this.filteredItems = this.filterItems();
           
-        }
+    }
 
     setObjects(){
         let i = 0;
@@ -91,7 +91,4 @@ export default class PetsPageModel extends BaseModel {
     numPages = () => { 
       return Math.ceil(this.items.length / this.countCardsOnPage);
     }
-
-
-
 }
