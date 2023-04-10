@@ -10,6 +10,7 @@ interface IModel {
   cards:ICard[];
   filteredItems?:any;
   checkLastPage?:any;
+  checkFirstPage?:any;
   numPages?:any;
 }
 

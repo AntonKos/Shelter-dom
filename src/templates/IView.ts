@@ -14,7 +14,7 @@ interface IView {
   addAnimationEndListener:(arg0:()=>void,  arg1:ICard[],  arg2:IItem[])=>void;
   setItems:(arg0:IItem[])=>void;
   bindNextPageHandler?:any;
-
+  bindPreviousPageHandler?:any;
 }
 
 export default IView;

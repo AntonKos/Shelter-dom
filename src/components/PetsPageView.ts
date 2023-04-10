@@ -75,7 +75,7 @@ export default class PetsPageView extends BaseView{
             this.prevBtn.classList.remove('blocked');
             this.startBtn.classList.remove('blocked');
           }
-          if (curPage == handler2() && items.length > countCardsOnPage) { //handler2()?
+          if (curPage == handler2() && items.length > countCardsOnPage) { 
             this.nextBtn.classList.add('blocked');
             this.endBtn.classList.add('blocked');
           } else {
@@ -86,7 +86,33 @@ export default class PetsPageView extends BaseView{
       }, false);
     }
 
-   
+    bindPreviousPageHandler(handler:any, handler2:any){
+      this.prevBtn.addEventListener('click', ()=>{
+        const arrayOfModelValues = handler();
+        if(arrayOfModelValues){
+        const [curPage, filteredItems, items, countCardsOnPage] = arrayOfModelValues;
+
+        this.pageNumber.innerHTML = curPage;
+        this.setItems(filteredItems);
+        // setPopup();
+        if (curPage == 1) {
+          this.prevBtn.classList.add('blocked');
+          this.startBtn.classList.add('blocked');
+          } else {
+            this.prevBtn.classList.remove('blocked');
+            this.startBtn.classList.remove('blocked');
+          }
+          if (curPage == handler2() && items.length > countCardsOnPage) {
+            this.nextBtn.classList.add('blocked');
+            this.endBtn.classList.add('blocked');
+          } else {
+            this.nextBtn.classList.remove('blocked');
+            this.endBtn.classList.remove('blocked');
+          }
+      }                 
+      }, false);
+    }
+
     addShowBodyListener(){
         window.onload = () =>{
             setTimeout(()=>{

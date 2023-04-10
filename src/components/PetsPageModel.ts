@@ -16,17 +16,23 @@ export default class PetsPageModel extends BaseModel {
       this.setObjects();
       this.items = this.objects.map((obj:any, index:any) => ({ name:obj.name, image: obj.img, type: obj.type, breed: obj.breed, description:obj.description, age:obj.age, inoculations:obj.inoculations, diseases:obj.diseases, parasites:obj.parasites})); 
       this.filteredItems = this.filterItems();
-      // console.log(this.checkLastPage());
       
     }
 
     checkLastPage(){      
-        if ((this.curPage * this.countCardsOnPage) < this.items.length){
-            this.curPage++;
-            this.filteredItems = this.filterItems();
-            // console.log([this.curPage, this.filteredItems, this.items, this.countCardsOnPage, this.numPages])
-            return [this.curPage, this.filteredItems, this.items, this.countCardsOnPage];
-        } 
+      if ((this.curPage * this.countCardsOnPage) < this.items.length){
+        this.curPage++;
+        this.filteredItems = this.filterItems();
+        return [this.curPage, this.filteredItems, this.items, this.countCardsOnPage];
+      } 
+    }
+
+    checkFirstPage(){      
+      if ((this.curPage > 1)){
+        this.curPage--;
+        this.filteredItems = this.filterItems();
+        return [this.curPage, this.filteredItems, this.items, this.countCardsOnPage];
+      } 
     }
 
     filterItems = () => {
@@ -70,7 +76,7 @@ export default class PetsPageModel extends BaseModel {
         };
     }
 
-    numPages = () => { // передать эту функцию не напрямую во view, а через controller
+    numPages = () => { 
       return Math.ceil(this.items.length / this.countCardsOnPage);
     }
 
