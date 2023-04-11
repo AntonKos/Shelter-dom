@@ -1,6 +1,6 @@
-https://shelter-antonkos88.netlify.app/
+**Deploy:** https://shelter-antonkos88.netlify.app/
 
-**Deploy:** HTML, CSS, Javascript, Typescript, Webpack, Pattern MVC
+HTML, CSS, Javascript, Typescript, Webpack, Pattern MVC
 
 #### Реализация burger menu на обеих страницах
 
