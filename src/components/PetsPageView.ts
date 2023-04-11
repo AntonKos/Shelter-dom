@@ -35,7 +35,7 @@ export default class PetsPageView extends BaseView{
         this.addShowBodyListener();
     }
 
-    handlePopup(filteredItems:any){
+    setPopup(filteredItems:any){
       const itemsCarousel = document.querySelectorAll('.paginate__item');
       itemsCarousel.forEach(element => {
         element.addEventListener('click', (event) =>{ 
@@ -54,6 +54,23 @@ export default class PetsPageView extends BaseView{
       }); 
     }
 
+    setStylesOfArrows(curPage:any, callback:any){
+      if (curPage == 1) {
+        this.prevBtn.classList.add('blocked');
+        this.startBtn.classList.add('blocked');
+        } else {
+          this.prevBtn.classList.remove('blocked');
+          this.startBtn.classList.remove('blocked');
+        }
+        if (curPage == callback()) {
+          this.nextBtn.classList.add('blocked');
+          this.endBtn.classList.add('blocked');
+        } else {
+          this.nextBtn.classList.remove('blocked');
+          this.endBtn.classList.remove('blocked');
+        }
+    }
+
     setItems = (items:IItem[]) => {  
         this.carousel.innerHTML = items.map((item) => ItemPets({...item})).join('');
     }
@@ -63,7 +80,7 @@ export default class PetsPageView extends BaseView{
     }
 
     bindSetPopap(handler:()=>void, filteredItems:ICard[]) {
-      this.handlePopup(filteredItems);
+      this.setPopup(filteredItems);
     }
 
     bindFirstPageHandler(handler:any, handler2:any){
@@ -74,24 +91,8 @@ export default class PetsPageView extends BaseView{
 
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
-        // setPopup();
-
-        this.handlePopup(filteredItems);
-
-        if (curPage == 1) {
-          this.prevBtn.classList.add('blocked');
-          this.startBtn.classList.add('blocked');
-          } else {
-            this.prevBtn.classList.remove('blocked');
-            this.startBtn.classList.remove('blocked');
-          }
-          if (curPage == handler2()) {
-            this.nextBtn.classList.add('blocked');
-            this.endBtn.classList.add('blocked');
-          } else {
-            this.nextBtn.classList.remove('blocked');
-            this.endBtn.classList.remove('blocked');
-          }
+        this.setPopup(filteredItems);
+        this.setStylesOfArrows(curPage, handler2);
       }                 
       }, false);
     }
@@ -104,23 +105,8 @@ export default class PetsPageView extends BaseView{
 
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
-        // setPopup();
-        this.handlePopup(filteredItems);
-
-        if (curPage == 1) {
-          this.prevBtn.classList.add('blocked');
-          this.startBtn.classList.add('blocked');
-          } else {
-            this.prevBtn.classList.remove('blocked');
-            this.startBtn.classList.remove('blocked');
-          }
-          if (curPage == handler2()) { 
-            this.nextBtn.classList.add('blocked');
-            this.endBtn.classList.add('blocked');
-          } else {
-            this.nextBtn.classList.remove('blocked');
-            this.endBtn.classList.remove('blocked');
-          }
+        this.setPopup(filteredItems);
+        this.setStylesOfArrows(curPage, handler2);
       }                 
       }, false);
     }
@@ -133,24 +119,8 @@ export default class PetsPageView extends BaseView{
 
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
-        // setPopup();
-
-        this.handlePopup(filteredItems);
-        
-        if (curPage == 1) {
-          this.prevBtn.classList.add('blocked');
-          this.startBtn.classList.add('blocked');
-          } else {
-            this.prevBtn.classList.remove('blocked');
-            this.startBtn.classList.remove('blocked');
-          }
-          if (curPage == handler2()) {
-            this.nextBtn.classList.add('blocked');
-            this.endBtn.classList.add('blocked');
-          } else {
-            this.nextBtn.classList.remove('blocked');
-            this.endBtn.classList.remove('blocked');
-          }
+        this.setPopup(filteredItems);
+        this.setStylesOfArrows(curPage, handler2);
       }                 
       }, false);
     }
@@ -163,29 +133,11 @@ export default class PetsPageView extends BaseView{
 
         this.pageNumber.innerHTML = curPage;
         this.setItems(filteredItems);
-        // setPopup();
-
-        this.handlePopup(filteredItems);
-
-        if (curPage == 1) {
-          this.prevBtn.classList.add('blocked');
-          this.startBtn.classList.add('blocked');
-          } else {
-            this.prevBtn.classList.remove('blocked');
-            this.startBtn.classList.remove('blocked');
-          }
-          if (curPage == handler2()) {
-            this.nextBtn.classList.add('blocked');
-            this.endBtn.classList.add('blocked');
-          } else {
-            this.nextBtn.classList.remove('blocked');
-            this.endBtn.classList.remove('blocked');
-          }
+        this.setPopup(filteredItems);
+        this.setStylesOfArrows(curPage, handler2);
       }                 
       }, false);
     }
-
-    
 
     addShowBodyListener(){
       window.onload = () =>{
@@ -209,7 +161,4 @@ export default class PetsPageView extends BaseView{
         })
       });      
     }
-
-   
-
 }
