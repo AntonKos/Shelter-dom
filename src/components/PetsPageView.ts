@@ -71,6 +71,18 @@ export default class PetsPageView extends BaseView{
         }
     }
 
+    setPaginationPage(handler:any, handler2:any){
+      const arrayOfModelValues = handler();
+      if(arrayOfModelValues){
+      const [curPage, filteredItems] = arrayOfModelValues;
+
+      this.pageNumber.innerHTML = curPage;
+      this.setItems(filteredItems);
+      this.setPopup(filteredItems);
+      this.setStylesOfArrows(curPage, handler2);
+    } 
+    }
+
     setItems = (items:IItem[]) => {  
         this.carousel.innerHTML = items.map((item) => ItemPets({...item})).join('');
     }
@@ -85,57 +97,25 @@ export default class PetsPageView extends BaseView{
 
     bindFirstPageHandler(handler:any, handler2:any){
       this.startBtn.addEventListener('click', ()=>{
-        const arrayOfModelValues = handler();
-        if(arrayOfModelValues){
-        const [curPage, filteredItems] = arrayOfModelValues;
-
-        this.pageNumber.innerHTML = curPage;
-        this.setItems(filteredItems);
-        this.setPopup(filteredItems);
-        this.setStylesOfArrows(curPage, handler2);
-      }                 
+        this.setPaginationPage(handler, handler2);           
       }, false);
     }
 
     bindNextPageHandler(handler:any, handler2:any){
       this.nextBtn.addEventListener('click', ()=>{
-        const arrayOfModelValues = handler();
-        if(arrayOfModelValues){
-        const [curPage, filteredItems] = arrayOfModelValues;
-
-        this.pageNumber.innerHTML = curPage;
-        this.setItems(filteredItems);
-        this.setPopup(filteredItems);
-        this.setStylesOfArrows(curPage, handler2);
-      }                 
+        this.setPaginationPage(handler, handler2);                 
       }, false);
     }
 
     bindPreviousPageHandler(handler:any, handler2:any){
       this.prevBtn.addEventListener('click', ()=>{
-        const arrayOfModelValues = handler();
-        if(arrayOfModelValues){
-        const [curPage, filteredItems] = arrayOfModelValues;
-
-        this.pageNumber.innerHTML = curPage;
-        this.setItems(filteredItems);
-        this.setPopup(filteredItems);
-        this.setStylesOfArrows(curPage, handler2);
-      }                 
+        this.setPaginationPage(handler, handler2);                  
       }, false);
     }
 
     bindLastPageHandler(handler:any, handler2:any){
       this.endBtn.addEventListener('click', ()=>{
-        const arrayOfModelValues = handler();
-        if(arrayOfModelValues){
-        const [curPage, filteredItems] = arrayOfModelValues;
-
-        this.pageNumber.innerHTML = curPage;
-        this.setItems(filteredItems);
-        this.setPopup(filteredItems);
-        this.setStylesOfArrows(curPage, handler2);
-      }                 
+        this.setPaginationPage(handler, handler2);                  
       }, false);
     }
 
