@@ -9,7 +9,7 @@ export default class PetsPageController extends BaseController {
   constructor(model:IModel, view:IView) {
     super(model, view);
     this.view.setItems(this.model.filteredItems);
-    this.view.bindSetPopap(this.handleChangePopup, this.model.cards);
+    this.view.bindSetPopap(this.handleChangePopup, this.model.filteredItems);
 
     this.view.bindNextPageHandler(this.onNextPage, this.model.numPages);
     this.view.bindPreviousPageHandler(this.onPreviousPage, this.model.numPages);
