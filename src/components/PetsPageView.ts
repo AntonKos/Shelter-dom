@@ -221,7 +221,6 @@ export default class PetsPageView extends BaseView{
             if (target.classList.contains('paginate__item')) {
               this.modal.classList.toggle("showModal");
               this.changePopup();
-            
               const object = filteredItems.find((card: { name: string | undefined; }) => card.name === target.dataset.name); 
               this.popap = document.querySelector('.popup') as HTMLDivElement;
               this.popap.innerHTML = Popup(object);
@@ -249,6 +248,8 @@ export default class PetsPageView extends BaseView{
       }                 
       }, false);
     }
+
+    
 
     addShowBodyListener(){
       window.onload = () =>{
